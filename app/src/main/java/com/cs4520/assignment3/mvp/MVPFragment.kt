@@ -5,76 +5,67 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.cs4520.assignment3.R
+import com.cs4520.assignment3.databinding.CalculatorFragmentBinding
 
 class MVPFragment : Fragment(), ICalculatorView {
-    private lateinit var firstNumberInput: EditText
-    private lateinit var secondNumberInput: EditText
-    private lateinit var resultField: TextView
+    private lateinit var binding: CalculatorFragmentBinding
     private lateinit var presenter: CalculatorPresenter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.calculator_fragment, container, false)
-        view.setBackgroundColor(Color.parseColor("#c4b8e1"))
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = CalculatorFragmentBinding.inflate(layoutInflater)
+        binding.root.setBackgroundColor(Color.parseColor("#c4b8e1"))
 
-        firstNumberInput = view.findViewById(R.id.number1)
-        secondNumberInput = view.findViewById(R.id.number2)
-        resultField = view.findViewById(R.id.resultView)
         presenter = CalculatorPresenter(this)
 
-        setupButtons(view)
+        setupButtons()
 
-        return view
+        return binding.root
     }
 
-    private fun setupButtons(view: View) {
-        view.findViewById<Button>(R.id.addbutton).setOnClickListener {
+    private fun setupButtons() {
+        binding.addButton.setOnClickListener {
             presenter.onAddClicked(
-                firstNumberInput.text.toString(),
-                secondNumberInput.text.toString()
+                binding.number1.text.toString(),
+                binding.number2.text.toString()
             )
         }
 
-        view.findViewById<Button>(R.id.substractButton).setOnClickListener {
+        binding.subtractButton.setOnClickListener {
             presenter.onSubtractClicked(
-                firstNumberInput.text.toString(),
-                secondNumberInput.text.toString()
+                binding.number1.text.toString(),
+                binding.number2.text.toString()
             )
         }
 
-        view.findViewById<Button>(R.id.multiplyButton).setOnClickListener {
+        binding.multiplyButton.setOnClickListener {
             presenter.onMultiplyClicked(
-                firstNumberInput.text.toString(),
-                secondNumberInput.text.toString()
+                binding.number1.text.toString(),
+                binding.number2.text.toString()
             )
         }
 
-        view.findViewById<Button>(R.id.divideButton).setOnClickListener {
+        binding.divideButton.setOnClickListener {
             presenter.onDivideClicked(
-                firstNumberInput.text.toString(),
-                secondNumberInput.text.toString()
+                binding.number1.text.toString(),
+                binding.number2.text.toString()
             )
         }
-
     }
 
     override fun showResult(result: String) {
-        "${resultField.text} $result".also { resultField.text = it }
+        binding.resultView.text = buildString {
+            append("Result: ")
+            append(result)
+        }
     }
 
     override fun clearInput() {
-        firstNumberInput.text.clear()
-        secondNumberInput.text.clear()
-        "Result:".also { resultField.text = it }
+        binding.number1.text.clear()
+        binding.number2.text.clear()
     }
 
     override fun showError(message: String) {
