@@ -2,6 +2,7 @@ package com.cs4520.assignment3.mvvm
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cs4520.assignment3.CalculatorModel
 
 class CalculatorViewModel : ViewModel() {
     private val model = CalculatorModel()

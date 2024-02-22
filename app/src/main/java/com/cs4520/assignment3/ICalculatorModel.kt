@@ -1,4 +1,4 @@
-package com.cs4520.assignment3.mvp
+package com.cs4520.assignment3
 
 interface ICalculatorModel {
     fun add(firstNumber:Double, secondNumber: Double):Double

@@ -1,4 +1,4 @@
-package com.cs4520.assignment3.mvp
+package com.cs4520.assignment3
 
 class CalculatorModel : ICalculatorModel {
 
