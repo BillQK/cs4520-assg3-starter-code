@@ -39,7 +39,9 @@ class MVVMFragment : Fragment() {
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { message ->
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            if (message.isNotEmpty()) {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            }
         })
 
         setupButtons(view)
