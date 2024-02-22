@@ -29,29 +29,29 @@ class MVPFragment : Fragment(), ICalculatorView {
     private fun setupButtons() {
         binding.addButton.setOnClickListener {
             presenter.onAddClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
         binding.subtractButton.setOnClickListener {
             presenter.onSubtractClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
         binding.multiplyButton.setOnClickListener {
             presenter.onMultiplyClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
         binding.divideButton.setOnClickListener {
             presenter.onDivideClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
     }

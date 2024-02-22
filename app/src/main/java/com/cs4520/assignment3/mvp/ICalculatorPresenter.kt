@@ -1,8 +1,10 @@
 package com.cs4520.assignment3.mvp
 
+import android.text.Editable
+
 interface ICalculatorPresenter {
-    fun onAddClicked(firstNumber: String?, secondNumber: String?)
-    fun onSubtractClicked(firstNumber: String?, secondNumber: String?)
-    fun onMultiplyClicked(firstNumber: String?, secondNumber: String?)
-    fun onDivideClicked(firstNumber: String?, secondNumber: String?)
+    fun onAddClicked(firstNumber: Editable, secondNumber: Editable)
+    fun onSubtractClicked(firstNumber: Editable, secondNumber: Editable)
+    fun onMultiplyClicked(firstNumber: Editable, secondNumber: Editable)
+    fun onDivideClicked(firstNumber: Editable, secondNumber: Editable)
 }

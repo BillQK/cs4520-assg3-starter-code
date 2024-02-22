@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.cs4520.assignment3.R
 import com.cs4520.assignment3.databinding.CalculatorFragmentBinding
 
 
@@ -29,51 +25,50 @@ class MVVMFragment : Fragment() {
 
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             clearInput()
-            if (result.isNotEmpty()) {
-                binding.resultView.text = buildString {
-                    append("Result: ")
-                    append(result)
-                }
+            binding.resultView.text = buildString {
+                append("Result: ")
+                append(result)
             }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { message ->
+            clearInput()
             if (message.isNotEmpty()) {
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         })
 
-        setupButtons(binding.root)
+        setupButtons()
 
         return binding.root
     }
 
-    private fun setupButtons(view: View) {
-        view.findViewById<Button>(R.id.addButton).setOnClickListener {
+    private fun setupButtons() {
+        binding.addButton.setOnClickListener {
             viewModel.onAddClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
-        view.findViewById<Button>(R.id.subtractButton).setOnClickListener {
+        binding.subtractButton.setOnClickListener {
             viewModel.onSubtractClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
-        view.findViewById<Button>(R.id.multiplyButton).setOnClickListener {
+        binding.multiplyButton.setOnClickListener {
             viewModel.onMultiplyClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
-        view.findViewById<Button>(R.id.divideButton).setOnClickListener {
+        binding.divideButton.setOnClickListener {
             viewModel.onDivideClicked(
-                binding.number1.text.toString(),
-                binding.number2.text.toString()
+                binding.number1.text,
+                binding.number2.text
             )
         }
 
