@@ -27,14 +27,14 @@ class HomeFragment : Fragment() {
         mvvmButton = view.findViewById(R.id.mvvmButton)
 
         mvpButton.setOnClickListener { navigateToMvp() }
-        mvvmButton.setOnClickListener { navigateToMvvp() }
+        mvvmButton.setOnClickListener { navigateToMvvm() }
     }
 
     private fun navigateToMvp() {
         findNavController().navigate(R.id.action_homeFragment_to_mvpFragment)
     }
 
-    private fun navigateToMvvp() {
+    private fun navigateToMvvm() {
         findNavController().navigate(R.id.action_homeFragment_to_mvvmFragment)
     }
 }
