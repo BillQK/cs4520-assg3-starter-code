@@ -35,7 +35,9 @@ class MVVMFragment : Fragment() {
 
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             clearInput()
-            "${resultField.text} $result".also { resultField.text = it }
+            if (result.isNotEmpty()) {
+                "${resultField.text} $result".also { resultField.text = it }
+            }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { message ->
