@@ -23,6 +23,14 @@ class MVVMFragment : Fragment() {
         binding = CalculatorFragmentBinding.inflate(layoutInflater)
         binding.root.setBackgroundColor(Color.parseColor("#ffb3ba"))
 
+        setUpObserver();
+
+        setupButtons()
+
+        return binding.root
+    }
+
+    private fun setUpObserver() {
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             clearInput()
             binding.resultView.text = buildString {
@@ -37,10 +45,6 @@ class MVVMFragment : Fragment() {
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         })
-
-        setupButtons()
-
-        return binding.root
     }
 
     private fun setupButtons() {
